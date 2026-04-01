@@ -206,10 +206,7 @@ export default function HeroSection() {
       `}</style>
 
       <section className="hero">
-        {/* 
-          Pune imaginea "rn_main_page_bg.webp" în folderul /public
-          și src-ul de mai jos devine "/rn_main_page_bg.webp"
-        */}
+        
         <div className="hero-bg">
           <img src="/navbarfix.png" alt="" aria-hidden="true" />
         </div>
@@ -268,10 +265,7 @@ export default function HeroSection() {
         </div>
       </section>
 
-      {/* Secțiunea albă de dedesubt — adaugă conținut aici */}
-      {/* <div className="below-hero"> */}
-      {/*   conținut viitor */}
-      {/* </div> */}
+   
     </>
   );
 }
