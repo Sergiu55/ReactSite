@@ -74,6 +74,95 @@ export default function HomeContent() {
           </Box>
         </Box>
       </Box>
+
+      {/* SECTION 4 — About section */}
+      <Box sx={{ position: "relative", overflow: "hidden", pt: 4, pb: 8, px: { xs: 2, md: 3 } }}>
+        
+        {/* Watermark text */}
+        <Typography
+          sx={{
+            position: "absolute",
+            bottom: -70,
+            left: "50%",
+            transform: "translateX(-50%)",
+            fontSize: { xs: 60, md: 120 },
+            fontWeight: 900,
+            color: "rgba(0,0,0,0.08)",
+            whiteSpace: "nowrap",
+            userSelect: "none",
+            letterSpacing: "0.05em",
+          }}
+        >
+          RAIL.WAY
+        </Typography>
+
+        <Box sx={{ maxWidth: 960, mx: "auto" }}>
+          
+          {/* Titlu mare */}
+          <Typography
+            sx={{
+              fontSize: { xs: 24, md: 36 },
+              fontWeight: 700,
+              color: "#111",
+              mb: 3,
+              lineHeight: 1.2,
+              maxWidth: 700,
+            }}
+          >
+            The Most Convenient Way to Book Train Tickets Online
+          </Typography>
+
+          {/* Subtitlu */}
+          <Typography
+            sx={{
+              fontSize: 16,
+              color: "#444",
+              mb: 6,
+              maxWidth: 420,
+              lineHeight: 1.6,
+              pl: 2,
+              borderLeft: "3px solid #f5a500",
+            }}
+          >
+            Rail.Way is a global independent online reservation service agency for train tickets
+          </Typography>
+
+          {/* 4 blocuri text — 2 coloane */}
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+              gap: 4,
+              position: "relative",
+              zIndex: 1,
+            }}
+          >
+            <Typography sx={{ fontSize: 13, color: "#666", lineHeight: 1.9 }}>
+              Our goal is to help you choose the most comfortable trains and to see the types of seats so you
+              can make a better choice for your trip. Rail.Way allows you to book tickets far in advance so
+              you can plan your trips better.
+            </Typography>
+
+            <Typography sx={{ fontSize: 13, color: "#666", lineHeight: 1.9 }}>
+              We do not own or operate any of the trains or rail stations but provide top quality agency
+              services to our customers so that they have the best travel experience.
+            </Typography>
+
+            <Typography sx={{ fontSize: 13, color: "#666", lineHeight: 1.9 }}>
+              Rail.Way offers you the easiest way to book train tickets online across the world, including
+              Europe, Asia, Australia, the Americas, the Middle East and Africa. We partner with some of the
+              world's best rail carriers and we offer the most convenient way to book your tickets online.
+            </Typography>
+
+            <Typography sx={{ fontSize: 13, color: "#666", lineHeight: 1.9 }}>
+              Rail.Way also has a real human support service, so you can utilize our advice and make
+              changes to your plans if needed. Rail.Way is possibly the most convenient service in the world
+              for booking train tickets.
+            </Typography>
+          </Box>
+
+        </Box>
+      </Box>
     </Box>
   );
 }
