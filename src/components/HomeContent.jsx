@@ -75,10 +75,10 @@ export default function HomeContent() {
         </Box>
       </Box>
 
-      {/* SECTION 4 — About section */}
+      
       <Box sx={{ position: "relative", overflow: "hidden", pt: 4, pb: 8, px: { xs: 2, md: 3 } }}>
         
-        {/* Watermark text */}
+       
         <Typography
           sx={{
             position: "absolute",
@@ -98,7 +98,7 @@ export default function HomeContent() {
 
         <Box sx={{ maxWidth: 960, mx: "auto" }}>
           
-          {/* Titlu mare */}
+        
           <Typography
             sx={{
               fontSize: { xs: 24, md: 36 },
@@ -112,7 +112,7 @@ export default function HomeContent() {
             The Most Convenient Way to Book Train Tickets Online
           </Typography>
 
-          {/* Subtitlu */}
+          
           <Typography
             sx={{
               fontSize: 16,
@@ -127,7 +127,7 @@ export default function HomeContent() {
             Rail.Way is a global independent online reservation service agency for train tickets
           </Typography>
 
-          {/* 4 blocuri text — 2 coloane */}
+         
           <Box
             sx={{
               display: "grid",

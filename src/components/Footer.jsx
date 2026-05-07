@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <Box sx={{ bgcolor: "#0a0a0a", width: "100%" }}>
 
-      {/* Links section */}
+      
       <Box
         sx={{
           maxWidth: 960,
@@ -43,10 +43,10 @@ export default function Footer() {
         ))}
       </Box>
 
-      {/* Divider */}
+     
       <Box sx={{ borderTop: "1px solid rgba(255,255,255,0.08)" }} />
 
-      {/* Company info */}
+      
       <Box
         sx={{
           maxWidth: 960,
@@ -59,7 +59,7 @@ export default function Footer() {
           alignItems: "flex-start",
         }}
       >
-        {/* Adresa 1 */}
+        
         <Box sx={{ flex: 1 }}>
           <Typography sx={{ fontSize: 13, fontWeight: 700, color: "#fff", mb: 0.5 }}>
             Rail.Way SRL (OC 1451)
@@ -69,7 +69,7 @@ export default function Footer() {
           </Typography>
         </Box>
 
-        {/* Adresa 2 */}
+        
         <Box sx={{ flex: 1 }}>
           <Typography sx={{ fontSize: 13, fontWeight: 700, color: "#fff", mb: 0.5 }}>
             Rail.Way SRL (1885055)
@@ -79,7 +79,7 @@ export default function Footer() {
           </Typography>
         </Box>
 
-        {/* Language + Support */}
+        
         <Box sx={{ display: "flex", flexDirection: "column", alignItems: { md: "flex-end" }, gap: 1.5 }}>
           <Box
             sx={{
@@ -110,10 +110,10 @@ export default function Footer() {
         </Box>
       </Box>
 
-      {/* Divider */}
+     
       <Box sx={{ borderTop: "1px solid rgba(255,255,255,0.08)" }} />
 
-      {/* Bottom bar */}
+      
       <Box
         sx={{
           maxWidth: 960,

@@ -1,11 +1,13 @@
 import HeroSection from "../components/HeroSection";
 import HomeContent from "../components/HomeContent";
+import StrapiSections from "./components/StrapiSections";
 
-export default function Home() {
+export default async function Home() {
   return (
     <main>
       <HeroSection />
       <HomeContent />
+      <StrapiSections />
     </main>
   );
 }
