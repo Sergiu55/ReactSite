@@ -1,28 +1,55 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import {
   wrapperSx,
   descriptionBoxSx,
   descriptionTextSx,
   bannerWrapperSx,
-  bannerBoxSx,
   bannerOverlaySx,
   bannerContentSx,
   bannerTitleSx,
   cardsWrapperSx,
-  cardLeftSx,
   cardOverlaySx,
   cardContentSx,
   cardAccentSx,
   cardTitleSx,
   cardTextSx,
-  cardRightSx,
   cardRightOverlaySx,
   cardRightTextSx,
 } from "./HomeContent.styles";
 
+const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
+
 export default function HomeContent() {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    fetch(`${STRAPI_URL}/api/articles?populate=*`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Strapi data:", JSON.stringify(data.data));
+        setArticles(data.data || []);
+      });
+  }, []);
+
+  const getImage = (article) => {
+    const slides = article?.Slides;
+    if (!slides) return "";
+    const slide = Array.isArray(slides) ? slides[0] : slides;
+    const url = slide?.url || slide?.formats?.medium?.url || slide?.formats?.large?.url;
+    return url || "";
+  };
+
+  const banner = articles.find((a) => a.Title?.includes("free app"));
+  const cardLeft = articles.find((a) => a.Title?.includes("Earn Cash"));
+  const cardRight = articles.find((a) => a.Title?.includes("Fast"));
+
+  const bannerImg = getImage(banner);
+  const cardLeftImg = getImage(cardLeft);
+  const cardRightImg = getImage(cardRight);
+
   return (
     <Box sx={wrapperSx}>
       <Box sx={descriptionBoxSx}>
@@ -39,7 +66,21 @@ export default function HomeContent() {
       </Box>
 
       <Box sx={bannerWrapperSx}>
-        <Box sx={bannerBoxSx}>
+        <Box
+          sx={{
+            borderRadius: 3,
+            overflow: "hidden",
+            position: "relative",
+            minHeight: 200,
+            bgcolor: "#222",
+            display: "flex",
+            alignItems: "center",
+            px: { xs: 3, md: 5 },
+            backgroundImage: bannerImg ? `url('${bannerImg}')` : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
           <Box sx={bannerOverlaySx} />
           <Box sx={bannerContentSx}>
             <Typography sx={bannerTitleSx}>
@@ -51,7 +92,19 @@ export default function HomeContent() {
       </Box>
 
       <Box sx={cardsWrapperSx}>
-        <Box sx={cardLeftSx}>
+        <Box
+          sx={{
+            flex: 2,
+            borderRadius: 3,
+            overflow: "hidden",
+            position: "relative",
+            minHeight: 320,
+            bgcolor: "#333",
+            backgroundImage: cardLeftImg ? `url('${cardLeftImg}')` : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
           <Box sx={cardOverlaySx} />
           <Box sx={cardContentSx}>
             <Box sx={cardAccentSx} />
@@ -63,7 +116,19 @@ export default function HomeContent() {
           </Box>
         </Box>
 
-        <Box sx={cardRightSx}>
+        <Box
+          sx={{
+            flex: 1,
+            borderRadius: 3,
+            overflow: "hidden",
+            position: "relative",
+            minHeight: 320,
+            bgcolor: "#1a1a2e",
+            backgroundImage: cardRightImg ? `url('${cardRightImg}')` : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
           <Box sx={cardRightOverlaySx} />
           <Box sx={cardContentSx}>
             <Typography sx={cardTitleSx}>Fast and Modern</Typography>
@@ -74,11 +139,7 @@ export default function HomeContent() {
           </Box>
         </Box>
       </Box>
-
-      
       <Box sx={{ position: "relative", overflow: "hidden", pt: 4, pb: 8, px: { xs: 2, md: 3 } }}>
-        
-       
         <Typography
           sx={{
             position: "absolute",
@@ -95,10 +156,7 @@ export default function HomeContent() {
         >
           RAIL.WAY
         </Typography>
-
         <Box sx={{ maxWidth: 960, mx: "auto" }}>
-          
-        
           <Typography
             sx={{
               fontSize: { xs: 24, md: 36 },
@@ -111,8 +169,6 @@ export default function HomeContent() {
           >
             The Most Convenient Way to Book Train Tickets Online
           </Typography>
-
-          
           <Typography
             sx={{
               fontSize: 16,
@@ -126,8 +182,6 @@ export default function HomeContent() {
           >
             Rail.Way is a global independent online reservation service agency for train tickets
           </Typography>
-
-         
           <Box
             sx={{
               display: "grid",
@@ -138,29 +192,18 @@ export default function HomeContent() {
             }}
           >
             <Typography sx={{ fontSize: 13, color: "#666", lineHeight: 1.9 }}>
-              Our goal is to help you choose the most comfortable trains and to see the types of seats so you
-              can make a better choice for your trip. Rail.Way allows you to book tickets far in advance so
-              you can plan your trips better.
+              Our goal is to help you choose the most comfortable trains and to see the types of seats so you can make a better choice for your trip.
             </Typography>
-
             <Typography sx={{ fontSize: 13, color: "#666", lineHeight: 1.9 }}>
-              We do not own or operate any of the trains or rail stations but provide top quality agency
-              services to our customers so that they have the best travel experience.
+              We do not own or operate any of the trains or rail stations but provide top quality agency services to our customers.
             </Typography>
-
             <Typography sx={{ fontSize: 13, color: "#666", lineHeight: 1.9 }}>
-              Rail.Way offers you the easiest way to book train tickets online across the world, including
-              Europe, Asia, Australia, the Americas, the Middle East and Africa. We partner with some of the
-              world's best rail carriers and we offer the most convenient way to book your tickets online.
+              Rail.Way offers you the easiest way to book train tickets online across the world, including Europe, Asia, Australia, the Americas.
             </Typography>
-
             <Typography sx={{ fontSize: 13, color: "#666", lineHeight: 1.9 }}>
-              Rail.Way also has a real human support service, so you can utilize our advice and make
-              changes to your plans if needed. Rail.Way is possibly the most convenient service in the world
-              for booking train tickets.
+              Rail.Way also has a real human support service, so you can utilize our advice and make changes to your plans if needed.
             </Typography>
           </Box>
-
         </Box>
       </Box>
     </Box>

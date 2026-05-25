@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 
-export default function HeroSection() {
+export default function HeroSection({
+  title = "The Easiest Way\nto Book Train Tickets",
+  bgImage = "/navbarfix.png",
+}) {
   const [activeTab, setActiveTab] = useState("oneway");
   const [findStay, setFindStay] = useState(true);
   const [search, setSearch] = useState("");
@@ -23,7 +26,6 @@ export default function HeroSection() {
           font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
-        /* Background image - visible pe dreapta, întunecat pe stânga */
         .hero-bg {
           position: absolute;
           inset: 0;
@@ -38,7 +40,6 @@ export default function HeroSection() {
           opacity: 1;
         }
 
-        /* Gradient peste imagine ca textul să fie lizibil */
         .hero-bg::after {
           content: '';
           position: absolute;
@@ -190,13 +191,6 @@ export default function HeroSection() {
           color: rgba(255,255,255,0.7);
         }
 
-        /* Secțiunea albă de dedesubt */
-        .below-hero {
-          background: #ffffff;
-          min-height: 0;
-          width: 100%;
-        }
-
         @media (max-width: 600px) {
           .hero { height: auto; padding: 48px 0; }
           .hero-search-row { flex-wrap: wrap; }
@@ -206,27 +200,24 @@ export default function HeroSection() {
       `}</style>
 
       <section className="hero">
-        
         <div className="hero-bg">
-          <img src="/navbarfix.png" alt="" aria-hidden="true" />
+          <img src={bgImage} alt="" aria-hidden="true" />
         </div>
 
         <div className="hero-inner">
           <h1 className="hero-title">
-            The Easiest Way<br />
-            to Book Train Tickets
+            {title.split("\n").map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < title.split("\n").length - 1 && <br />}
+              </span>
+            ))}
           </h1>
 
           <div className="hero-tabs">
-            <button className={`hero-tab ${activeTab === "oneway" ? "active" : ""}`} onClick={() => setActiveTab("oneway")}>
-              One Way
-            </button>
-            <button className={`hero-tab ${activeTab === "roundtrip" ? "active" : ""}`} onClick={() => setActiveTab("roundtrip")}>
-              Round Trip
-            </button>
-            <button className={`hero-tab ${activeTab === "group" ? "active" : ""}`} onClick={() => setActiveTab("group")}>
-              Group booking
-            </button>
+            <button className={`hero-tab ${activeTab === "oneway" ? "active" : ""}`} onClick={() => setActiveTab("oneway")}>One Way</button>
+            <button className={`hero-tab ${activeTab === "roundtrip" ? "active" : ""}`} onClick={() => setActiveTab("roundtrip")}>Round Trip</button>
+            <button className={`hero-tab ${activeTab === "group" ? "active" : ""}`} onClick={() => setActiveTab("group")}>Group booking</button>
           </div>
 
           <div className="hero-search-row">
@@ -239,14 +230,14 @@ export default function HeroSection() {
             />
             <button className="hero-date-btn" title="Pick date">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.8">
-                <rect x="3" y="4" width="18" height="18" rx="2"/>
-                <path d="M16 2v4M8 2v4M3 10h18"/>
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M16 2v4M8 2v4M3 10h18" />
               </svg>
             </button>
             <button className="hero-search-btn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="M21 21l-4.35-4.35"/>
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
               </svg>
               Search trains
             </button>
@@ -256,7 +247,7 @@ export default function HeroSection() {
             <div className="hero-checkbox">
               {findStay && (
                 <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" strokeWidth="2.5">
-                  <path d="M2 6l3 3 5-5"/>
+                  <path d="M2 6l3 3 5-5" />
                 </svg>
               )}
             </div>
@@ -264,8 +255,6 @@ export default function HeroSection() {
           </div>
         </div>
       </section>
-
-   
     </>
   );
 }

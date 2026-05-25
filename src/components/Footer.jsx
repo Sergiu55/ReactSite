@@ -1,12 +1,31 @@
 "use client";
 
 import { Box, Typography } from "@mui/material";
+import Link from "next/link";
+
+const footerLinks = [
+  { label: "Trains from Tokyo to Osaka", href: "/trains/tokyo-osaka" },
+  { label: "Trains from Chisinau to Balti", href: "/trains/chisinau-balti" },
+  { label: "Trains from Balti to Iasi", href: "/trains/balti-iasi" },
+  { label: "Trains from Iasi to Balti", href: "/trains/iasi-balti" },
+  { label: "Trains from Balti to Bucuresti", href: "/trains/balti-bucuresti" },
+  { label: "Trains from Bucuresti to Balti", href: "/trains/bucuresti-balti" },
+  { label: "Trains from Balti to Odessa", href: "/trains/balti-odessa" },
+  { label: "Trains from Odessa to Balti", href: "/trains/odessa-balti" },
+  { label: "Trains from Balti to Kiev", href: "/trains/balti-kiev" },
+  { label: "Trains from Kiev to Balti", href: "/trains/kiev-balti" },
+  { label: "Trains from Balti to Moscova", href: "/trains/balti-moscova" },
+  { label: "Trains from Moscova to Balti", href: "/trains/moscova-balti" },
+  { label: "Trains from Balti to Cluj", href: "/trains/balti-cluj" },
+  { label: "Trains from Cluj to Balti", href: "/trains/cluj-balti" },
+  { label: "Trains from Balti to Timisoara", href: "/trains/balti-timisoara" },
+  { label: "Trains from Timisoara to Balti", href: "/trains/timisoara-balti" },
+];
 
 export default function Footer() {
   return (
     <Box sx={{ bgcolor: "#0a0a0a", width: "100%" }}>
 
-      
       <Box
         sx={{
           maxWidth: 960,
@@ -18,35 +37,27 @@ export default function Footer() {
           gap: 1.5,
         }}
       >
-        {[
-          "Trains from Balti to Chisinau", "Trains from Chisinau to Balti",
-          "Trains from Balti to Iasi", "Trains from Iasi to Balti",
-          "Trains from Balti to Bucuresti", "Trains from Bucuresti to Balti",
-          "Trains from Balti to Odessa", "Trains from Odessa to Balti",
-          "Trains from Balti to Kiev", "Trains from Kiev to Balti",
-          "Trains from Balti to Moscova", "Trains from Moscova to Balti",
-          "Trains from Balti to Cluj", "Trains from Cluj to Balti",
-          "Trains from Balti to Timisoara", "Trains from Timisoara to Balti",
-        ].map((link, i) => (
+        {footerLinks.map((link, i) => (
           <Typography
             key={i}
+            component={Link}
+            href={link.href}
             sx={{
               fontSize: 12,
               color: i >= 12 ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.6)",
               cursor: "pointer",
-              "&:hover": { color: "#fff" },
+              textDecoration: "none",
+              "&:hover": { color: "#f5a623" },
               transition: "color 0.15s",
             }}
           >
-            {link}
+            {link.label}
           </Typography>
         ))}
       </Box>
 
-     
       <Box sx={{ borderTop: "1px solid rgba(255,255,255,0.08)" }} />
 
-      
       <Box
         sx={{
           maxWidth: 960,
@@ -59,7 +70,6 @@ export default function Footer() {
           alignItems: "flex-start",
         }}
       >
-        
         <Box sx={{ flex: 1 }}>
           <Typography sx={{ fontSize: 13, fontWeight: 700, color: "#fff", mb: 0.5 }}>
             Rail.Way SRL (OC 1451)
@@ -69,7 +79,6 @@ export default function Footer() {
           </Typography>
         </Box>
 
-        
         <Box sx={{ flex: 1 }}>
           <Typography sx={{ fontSize: 13, fontWeight: 700, color: "#fff", mb: 0.5 }}>
             Rail.Way SRL (1885055)
@@ -79,7 +88,6 @@ export default function Footer() {
           </Typography>
         </Box>
 
-        
         <Box sx={{ display: "flex", flexDirection: "column", alignItems: { md: "flex-end" }, gap: 1.5 }}>
           <Box
             sx={{
@@ -110,10 +118,8 @@ export default function Footer() {
         </Box>
       </Box>
 
-     
       <Box sx={{ borderTop: "1px solid rgba(255,255,255,0.08)" }} />
 
-      
       <Box
         sx={{
           maxWidth: 960,

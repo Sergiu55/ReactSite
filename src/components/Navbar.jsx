@@ -21,7 +21,11 @@ const navLinks = [
       items: [
         {
           name: "Moldova",
-          routes: ["Chisinau - Balti", "Balti - Chisinau", "Chisinau - Tiraspol"],
+          routes: [
+            { label: "Chisinau - Balti", href: "/trains/chisinau-balti" },
+            { label: "Balti - Chisinau", href: "/trains/balti-chisinau" },
+            { label: "Chisinau - Tiraspol", href: "/trains/chisinau-tiraspol" },
+          ],
         },
         {
           name: "Romania",
@@ -47,7 +51,14 @@ const navLinks = [
     submenu: {
       title: "Asia & Oceania",
       items: [
-        { name: "Japan", routes: ["Tokyo - Osaka", "Osaka - Tokyo", "Tokyo - Kyoto"] },
+        {
+          name: "Japan",
+          routes: [
+            { label: "Tokyo - Osaka", href: "/trains/tokyo-osaka" },
+            { label: "Osaka - Tokyo", href: "/trains/osaka-tokyo" },
+            { label: "Tokyo - Kyoto", href: "/trains/tokyo-kyoto" },
+          ],
+        },
         { name: "China", routes: ["Beijing - Shanghai", "Shanghai - Beijing", "Beijing - Guangzhou"] },
         { name: "India", routes: ["Mumbai - Delhi", "Delhi - Mumbai", "Mumbai - Bangalore"] },
         { name: "Australia", routes: ["Sydney - Melbourne", "Melbourne - Sydney", "Sydney - Brisbane"] },
@@ -273,27 +284,36 @@ export default function Navbar() {
                   </Typography>
                   <ArrowForwardIcon sx={{ fontSize: 14, color: "#f5a500" }} />
                 </Box>
-                {activeCountry.routes.map((route, i) => (
-                  <Box
-                    key={i}
-                    onClick={handleClose}
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      py: 1, px: 1,
-                      borderRadius: 1,
-                      cursor: "pointer",
-                      color: i === 0 ? "#f5a500" : "rgba(255,255,255,0.75)",
-                      "&:hover": { color: "#f5a500" },
-                      transition: "color 0.15s",
-                      borderBottom: "1px solid rgba(255,255,255,0.05)",
-                    }}
-                  >
-                    <Typography sx={{ fontSize: 13 }}>{route}</Typography>
-                    <ArrowForwardIcon sx={{ fontSize: 14, opacity: 0.4 }} />
-                  </Box>
-                ))}
+                {activeCountry.routes.map((route, i) => {
+                  const routeLabel = typeof route === "string" ? route : route.label;
+                  const routeHref = typeof route === "string" ? "#" : route.href;
+                  return (
+                    <Link
+                      key={i}
+                      href={routeHref}
+                      onClick={handleClose}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          py: 1, px: 1,
+                          borderRadius: 1,
+                          cursor: "pointer",
+                          color: i === 0 ? "#f5a500" : "rgba(255,255,255,0.75)",
+                          "&:hover": { color: "#f5a500" },
+                          transition: "color 0.15s",
+                          borderBottom: "1px solid rgba(255,255,255,0.05)",
+                        }}
+                      >
+                        <Typography sx={{ fontSize: 13 }}>{routeLabel}</Typography>
+                        <ArrowForwardIcon sx={{ fontSize: 14, opacity: 0.4 }} />
+                      </Box>
+                    </Link>
+                  );
+                })}
               </Box>
             )}
           </Box>
